@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club Details</title>
+</head>
+<body>
+    <h1>Club Details</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Club Name</th>
+            <th>Club Strength</th>
+            <th>Member Type</th>
+        </tr>
+        <tbody id="registrations"></tbody>
+    </table>
+    <script>
+        fetch('/registrations')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('registrations');
+                data.forEach(registration => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${registration.name}</td><td>${registration.rollno}</td><td>${registration.clubname}</td><td>${registration.clubstrength}</td><td>${registration.membertype}</td>`;
+                    tbody.appendChild(row);
+                });
+            });
+    </script>
+</body>
+</html>
